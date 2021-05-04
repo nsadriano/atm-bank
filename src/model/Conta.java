@@ -52,7 +52,7 @@ public class Conta {
 
 	@Override
 	public String toString() {
-		return "Cliente: \n" + cliente + "\nSaldo: " + saldo + "\nLimite=" + limite + "\nSaldo Total=" + saldoTotal;
+		return "Número da conta: " + codigo + "\nCliente: \n" + cliente + "\nSaldo: " + saldo + "\nLimite=" + limite + "\nSaldo Total=" + saldoTotal;
 	}
 	
 	public void atualizaSaldo() {

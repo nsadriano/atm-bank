@@ -25,7 +25,7 @@ public class Banco {
 		System.out.println("======================================");
 		System.out.println("============= " + nome + " ==================");
 		System.out.println("======================================");
-		System.out.println("Selecione uma opÃ§Ã£o no menu:");
+		System.out.println("Selecione uma opção no menu:");
 		System.out.println("1 - Criar conta");
 		System.out.println("2 - Efetuar saque");
 		System.out.println("3 - Efetuar deposito");
@@ -36,7 +36,7 @@ public class Banco {
 		try {
 			opcao = Integer.parseInt(entrada.nextLine());
 		}catch(NumberFormatException e) {
-			System.out.println("Por favor, informar opÃ§Ã£o vÃ¡lida.");
+			System.out.println("Por favor, informar opção válida.");
 			Utils.pausar(1);
 			menu();
 		}
@@ -62,7 +62,7 @@ public class Banco {
 			System.exit(0);
 			break;
 		default:
-			System.out.println("OpÃ§Ã£o invÃ¡lida.");
+			System.out.println("Opção inválida.");
 			Utils.pausar(2);
 			menu();
 			break;
@@ -105,13 +105,12 @@ public class Banco {
 		if(conta != null) {
 			System.out.println("Informe o valor para o saque");
 			Double valor = entrada.nextDouble();
-			
 			conta.sacar(valor);
 		}else {
 			System.out.println("Não foi encontrada a conta número: " + numero);
 		}
 		
-		Utils.pausar(4);
+		Utils.pausar(2);
 		menu();
 	}
 	
