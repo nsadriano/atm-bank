@@ -97,7 +97,22 @@ public class Banco {
 	}
 	
 	public static void efetuandoSaque() {
-		System.out.println("Efetuando saque...");
+		System.out.println("Informe o número da conta");
+		int numero = entrada.nextInt();
+		
+		Conta conta = buscarContaPorNumero(numero);
+		
+		if(conta != null) {
+			System.out.println("Informe o valor para o saque");
+			Double valor = entrada.nextDouble();
+			
+			conta.sacar(valor);
+		}else {
+			System.out.println("Não foi encontrada a conta número: " + numero);
+		}
+		
+		Utils.pausar(4);
+		menu();
 	}
 	
 	public static void efetuandoDeposito() {
@@ -115,10 +130,22 @@ public class Banco {
 				System.out.println();
 			}
 		}else {
-			System.out.println("Ainda nÃ£o existem contas cadastradas.");
+			System.out.println("Ainda nÃo existem contas cadastradas.");
 		}
 		Utils.pausar(4);
 		menu();
+	}
+	
+	public static Conta buscarContaPorNumero(int numero) {
+		Conta c = null;
+		if(contas.size() > 0) {
+			for(Conta conta : contas) {
+				if(conta.getCodigo() == numero) {
+					c = conta;
+				}
+			}
+		}
+		return c;
 	}
 	
 }
