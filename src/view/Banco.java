@@ -29,7 +29,7 @@ public class Banco {
 		System.out.println("1 - Criar conta");
 		System.out.println("2 - Efetuar saque");
 		System.out.println("3 - Efetuar deposito");
-		System.out.println("4 - Efetuar transferÃªncia");
+		System.out.println("4 - Efetuar transferência");
 		System.out.println("5 - Listar contas");
 		System.out.println("6 - Sair do sistema");
 		
@@ -37,6 +37,7 @@ public class Banco {
 			opcao = Integer.parseInt(entrada.nextLine());
 		}catch(NumberFormatException e) {
 			System.out.println("Por favor, informar opção válida.");
+			System.out.println(e.getMessage());
 			Utils.pausar(1);
 			menu();
 		}
@@ -59,6 +60,7 @@ public class Banco {
 			break;
 		case 6:
 			Utils.pausar(2);
+			System.out.println("Até logo!");
 			System.exit(0);
 			break;
 		default:
@@ -115,11 +117,41 @@ public class Banco {
 	}
 	
 	public static void efetuandoDeposito() {
-		System.out.println("Efetuando deposito...");
+		System.out.println("Informe o número da conta");
+		int numero = entrada.nextInt();
+		
+		Conta conta = buscarContaPorNumero(numero);
+		
+		if(conta != null) {
+			System.out.println("Informe o valor para deposito");
+			Double valor = entrada.nextDouble();
+			conta.depositar(valor);
+		}else {
+			System.out.println("Não foi encontrada a conta com número: " + numero);
+		}
+		
+		Utils.pausar(2);
+		menu();
 	}
 	
 	public static void efetuandoTransferencia() {
-		System.out.println("Efetuando transferencia...");
+		System.out.println("Informe o número da conta de origem");
+		int numero_origem = entrada.nextInt();
+		
+		System.out.println("Informe o número da conta de destino");
+		int numero_dest = entrada.nextInt();
+		
+		Conta conta_orig = buscarContaPorNumero(numero_origem);
+		Conta conta_dest = buscarContaPorNumero(numero_dest);
+		
+		if(conta_orig != null && conta_dest != null) {
+			System.out.println("Informe o valor a ser transferido");
+			Double valor = entrada.nextDouble();
+			
+			conta_orig.tranferir(conta_dest, valor);
+		}else {
+			System.out.println("Uma das contas informadas não foi encontrada.");
+		}
 	}
 	
 	public static void listarContas() {
@@ -129,7 +161,7 @@ public class Banco {
 				System.out.println();
 			}
 		}else {
-			System.out.println("Ainda nÃo existem contas cadastradas.");
+			System.out.println("Ainda não existem contas cadastradas.");
 		}
 		Utils.pausar(4);
 		menu();
